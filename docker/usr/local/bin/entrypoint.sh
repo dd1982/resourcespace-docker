@@ -1,5 +1,11 @@
 #!/bin/bash
 
+PUID=${PUID:-911}
+PGID=${PGID:-911}
+
+groupmod -o -g "$PGID" nginx
+usermod -o -u "$PUID" nginx
+
 # Generate a new self signed SSL certificate when none is provided in the volume
 if [ ! -f /etc/nginx/ssl/resourcespace.key  ] || [ ! -f /etc/nginx/ssl/resourcespace.crt ]
 then
