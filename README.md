@@ -6,7 +6,7 @@
 ResourceSpace running on Alpine  with Nginx
 
 ## Supported tags and respective Dockerfile links
-- [v9.0](https://github.com/creecros/resourcespace-docker/tree/v9.0)
+- [v9.2](https://github.com/ravenstar/resourcespace-docker/tree/v9.2)
 
 ## Requirements
 - Mysql or MariaDB 
@@ -14,6 +14,6 @@ ResourceSpace running on Alpine  with Nginx
 ## Example usage:
 ```
 docker run -p 80:80 \
-creecros/resourcespace-docker:v9.0
+ravenstar/resourcespace-docker:v9.2
 ```
 
