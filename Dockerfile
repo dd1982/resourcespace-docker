@@ -1,12 +1,9 @@
 FROM alpine:3.11
 
-VOLUME /etc/nginx/ssl
+ARG VERSION=9.2
 
-EXPOSE 80 443
-
-ARG VERSION
-
-RUN apk update && \
+RUN echo "*** install dependencies ***" && \
+    apk update && \
     apk add openssl unzip nginx bash ca-certificates s6 curl ssmtp mailx php7 php7-phar php7-curl \
     php7-fpm php7-json php7-zlib php7-xml php7-dom php7-ctype php7-opcache php7-zip php7-iconv \
     php7-pdo php7-pdo_mysql php7-pdo_sqlite php7-pdo_pgsql php7-mbstring php7-session php7-bcmath \
@@ -18,12 +15,16 @@ RUN apk update && \
 
 ADD . /var/www/app
 ADD docker/ /
-RUN svn co http://svn.resourcespace.com/svn/rs/releases/9.2/ ./var/www/app
+RUN echo "*** Cloning resourcespace svn repo ***" && \
+    svn co http://svn.resourcespace.com/svn/rs/releases/$VERSION/ ./var/www/app
 
+VOLUME /etc/nginx/ssl
 VOLUME /var/www/app/include
 VOLUME /var/www/app/filestore
 
-RUN rm -rf /var/www/app/docker && echo $VERSION > /version.txt
+RUN echo "*** cleanup ***" && \
+    rm -rf /var/www/app/docker && echo $VERSION > /version.txt
 
+EXPOSE 80 443
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 CMD []
