@@ -18,7 +18,7 @@ fi
 echo "********************"
 echo " Running chown on app dir... this may take awhile..."
 time chown -R nginx:nginx /var/www/app/. /var/tmp/nginx/
-echo " FINISHED. Starting main services...Running chown on app dir... this may take awhile...Running chown on app dir... this may take awhile...Running chown on app dir... this may take awhile...Running chown on app dir... this may take awhile...Running chown on app dir... this may take awhile..."
+echo " FINISHED. Starting main services..."
 echo "********************"
 
 exec /bin/s6-svscan /etc/services.d
