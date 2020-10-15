@@ -2,11 +2,16 @@
 
 groupmod -o -g "$PGID" nginx
 usermod -o -u "$PUID" nginx
+
+# We add the nginx user to the root group, so it can execute binaries (exiftool, ffmpeg, etc).
+# This is far from secure, but "it just works" and will do for now until a better fix is forumlated.
+usermod -a -G root nginx
  
 echo "********************"
 echo " nginx user:"
-echo "  UID: ${PUID}"
-echo "  GID: ${PGID}"
+echo "  PUID: ${PUID}"
+echo "  PGID: ${PGID}"
+id nginx
 
 # Generate a new self signed SSL certificate when none is provided in the volume
 if [ ! -f /etc/nginx/ssl/resourcespace.key  ] || [ ! -f /etc/nginx/ssl/resourcespace.crt ]
