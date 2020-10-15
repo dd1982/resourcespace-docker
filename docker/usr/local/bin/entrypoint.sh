@@ -12,12 +12,13 @@ echo "  GID: ${PGID}"
 if [ ! -f /etc/nginx/ssl/resourcespace.key  ] || [ ! -f /etc/nginx/ssl/resourcespace.crt ]
 then
     echo "********************"
-    openssl req -x509 -nodes -newkey rsa:2048 -keyout /etc/nginx/ssl/resourcespace.key -out /etc/nginx/ssl/resourcespace.crt -subj "/C=GB/ST=London/L=London/O=Self Signed/OU=IT Department/CN=resourcespace.org"
+    openssl req -x509 -nodes -newkey rsa:2048 -keyout /etc/nginx/ssl/resourcespace.key -out /etc/nginx/ssl/resourcespace.crt -subj "/C=GB/ST=London/L=London/O=Self Signed/OU=IT Department/CN=resourcespace.org" &
 fi
 
 echo "********************"
 echo " Running chown on app dir... this may take awhile..."
-time chown -R nginx:nginx /var/www/app/. /var/tmp/nginx/
+time chown -R nginx:nginx /var/www/app/. /var/tmp/nginx/ &
+wait
 echo " FINISHED. Starting main services..."
 echo "********************"
 
