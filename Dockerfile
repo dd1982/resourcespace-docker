@@ -15,8 +15,13 @@ RUN echo "*** install dependencies ***" && \
     rm -rf /var/www/localhost && \
     rm -f /etc/php7/php-fpm.d/www.conf
 
+# fix work iconviconviconv library with alpine
+RUN apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ --allow-untrusted gnu-libiconv
+ENV LD_PRELOAD /usr/lib/preloadable_libiconv.so php
+
 ADD . /var/www/app
 ADD docker/ /
+
 RUN echo "*** Cloning resourcespace svn repo ***" && \
     svn co http://svn.resourcespace.com/svn/rs/releases/$VERSION/ ./var/www/app
 
