@@ -1,7 +1,7 @@
 0 8 * * * cd /var/www/app && ./cli cronjob >/dev/null 2>&1
 
 # StaticSync import job
-0 */2 * * * cd /var/www/app && php pages/tools/staticsync.php
+0 9 * * * cd /var/www/app && php pages/tools/staticsync.php
 
 # Daily job to update hit counters
 42 8 * * * cd /var/www/app && php pages/tools/cron_copy_hitcount.php
