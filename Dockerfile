@@ -10,7 +10,7 @@ RUN echo "*** install dependencies ***" && \
     php7-pdo php7-pdo_mysql php7-pdo_sqlite php7-pdo_pgsql php7-mbstring php7-session php7-bcmath \
     php7-gd php7-mcrypt php7-openssl php7-sockets php7-posix php7-ldap php7-simplexml php7-fileinfo \
     php7-mysqli php7-dev php7-intl imagemagick ffmpeg ghostscript exiftool subversion mysql-client \
-    antiword xpdf && \
+    antiword xpdf poppler-utils && \
     rm -rf /var/cache/apk/* && \
     rm -rf /var/www/localhost && \
     rm -f /etc/php7/php-fpm.d/www.conf
