@@ -1,4 +1,4 @@
-0 8 * * * cd /var/www/app && ./cli cronjob >/dev/null 2>&1
+#0 8 * * * cd /var/www/app && ./cli cronjob >/dev/null 2>&1
 
 # StaticSync import job
 0 9 * * * cd /var/www/app && php pages/tools/staticsync.php
